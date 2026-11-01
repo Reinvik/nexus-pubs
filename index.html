@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      (function() {
+        var h = window.location.hostname;
+        var p = window.location.pathname;
+        if (h === 'www.solago.com.ve' || h === 'solago.com.ve') {
+          if (p === '/' || p === '' || p === '/web' || p === '/landing') {
+            window.location.replace('/landing.html' + window.location.search + window.location.hash);
+          }
+        }
+      })();
+    </script>
+    <link rel="icon" type="image/svg+xml" href="/pub-logo.svg" />
+    <link rel="alternate icon" type="image/png" href="/logo.png" />
+    <link rel="apple-touch-icon" href="/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <meta name="theme-color" content="#050811" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="description" content="Nexus Pub Chile — Comandas por Tarjeta QR, División de Cuenta y Semáforo de Salida para Pubs y Bares." />
+    <title>Nexus Pub Chile — Comandas QR &amp; Control de Bares</title>
+    <!-- Google Fonts: Outfit & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;700;850;900&display=swap" rel="stylesheet">
+
+    <style>
+      /* === SPLASH SCREEN PROFESIONAL === */
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+
+      body {
+        background-color: #050811;
+        min-height: 100vh;
+      }
+
+      #splash {
+        position: fixed;
+        inset: 0;
+        background: linear-gradient(135deg, #050811 0%, #0a1628 50%, #050d1f 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 99999;
+        transition: opacity 0.6s ease, visibility 0.6s ease;
+        overflow: hidden;
+      }
+
+      #splash.hide {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      /* Orbes decorativos de fondo */
+      #splash::before {
+        content: '';
+        position: absolute;
+        top: -20%;
+        right: -10%;
+        width: 55vmax;
+        height: 55vmax;
+        background: radial-gradient(circle, rgba(0, 210, 255, 0.07) 0%, transparent 65%);
+        pointer-events: none;
+      }
+
+      #splash::after {
+        content: '';
+        position: absolute;
+        bottom: -15%;
+        left: -10%;
+        width: 50vmax;
+        height: 50vmax;
+        background: radial-gradient(circle, rgba(0, 128, 200, 0.05) 0%, transparent 65%);
+        pointer-events: none;
+      }
+
+      .splash-logo-wrap {
+        position: relative;
+        margin-bottom: 32px;
+        animation: splashPulse 2s ease-in-out infinite;
+      }
+
+      /* Halo exterior */
+      .splash-logo-halo {
+        position: absolute;
+        inset: -14px;
+        border-radius: 28px;
+        background: rgba(0, 210, 255, 0.06);
+        border: 1px solid rgba(0, 210, 255, 0.12);
+        animation: splashHalo 2.5s ease-in-out infinite;
+      }
+
+      .splash-logo-box {
+        width: 88px;
+        height: 88px;
+        background: linear-gradient(145deg, #0a1628 0%, #050811 100%);
+        border: 1.5px solid rgba(0, 210, 255, 0.35);
+        border-radius: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow:
+          0 0 30px rgba(0, 210, 255, 0.15),
+          0 0 60px rgba(0, 210, 255, 0.05),
+          inset 0 1px 0 rgba(255,255,255,0.04);
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Brillo interno sutil */
+      .splash-logo-box::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 40%;
+        background: linear-gradient(180deg, rgba(0, 210, 255, 0.06) 0%, transparent 100%);
+        border-radius: 22px 22px 0 0;
+      }
+
+      .splash-logo-svg {
+        width: 46px;
+        height: 46px;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Nombre de la app */
+      .splash-brand {
+        font-family: 'Outfit', 'Inter', sans-serif;
+        font-size: 28px;
+        font-weight: 900;
+        letter-spacing: -0.04em;
+        color: #ffffff;
+        margin-bottom: 6px;
+        text-shadow: 0 0 40px rgba(0, 210, 255, 0.2);
+        animation: splashFadeUp 0.7s ease both;
+      }
+
+      .splash-brand span {
+        background: linear-gradient(90deg, #00d2ff 0%, #3b82f6 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .splash-tagline {
+        font-family: 'Inter', sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: rgba(148, 163, 184, 0.7);
+        animation: splashFadeUp 0.7s 0.15s ease both;
+      }
+
+      /* Barra de progreso */
+      .splash-progress-wrap {
+        position: absolute;
+        bottom: 48px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 120px;
+        height: 2px;
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: 99px;
+        overflow: hidden;
+      }
+
+      .splash-progress-bar {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, #00d2ff, #3b82f6);
+        border-radius: 99px;
+        animation: splashProgress 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        box-shadow: 0 0 8px rgba(0, 210, 255, 0.6);
+      }
+
+      /* Punto "powered by" */
+      .splash-powered {
+        position: absolute;
+        bottom: 24px;
+        font-family: 'Inter', sans-serif;
+        font-size: 10px;
+        font-weight: 600;
+        color: rgba(71, 85, 105, 0.8);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      @keyframes splashPulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.02); }
+      }
+
+      @keyframes splashHalo {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.5; transform: scale(1.04); }
+      }
+
+      @keyframes splashFadeUp {
+        from { opacity: 0; transform: translateY(12px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      @keyframes splashProgress {
+        0% { width: 0%; }
+        40% { width: 60%; }
+        70% { width: 82%; }
+        100% { width: 100%; }
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- === SPLASH SCREEN PROFESIONAL === -->
+    <div id="splash" aria-hidden="true">
+      <div class="splash-logo-wrap">
+        <div class="splash-logo-halo"></div>
+        <div class="splash-logo-box">
+          <img src="/pub-logo.svg" alt="Nexus Pub Chile" style="width: 76px; height: 76px; object-fit: contain; position: relative; z-index: 1;" />
+        </div>
+      </div>
+
+      <div class="splash-brand" style="font-family: 'Outfit', sans-serif; font-size: 38px; font-weight: 900; letter-spacing: -0.05em; text-shadow: 1px 2px 3px rgba(0,0,0,0.4); margin-bottom: 6px;">
+        <span style="background: none; -webkit-text-fill-color: initial; -webkit-background-clip: initial; color: #06b6d4;">Nexus</span> <span style="color: #f59e0b;">Pub</span>
+      </div>
+      <div class="splash-tagline">Comandas QR · Split Bill · Control de Bares Chile</div>
+
+      <div class="splash-progress-wrap">
+        <div class="splash-progress-bar"></div>
+      </div>
+
+      <div class="splash-powered">© Smartlean · Plataforma Nexus</div>
+    </div>
+
+    <!-- Contenedor de la App React -->
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
+  <defs>
+    <linearGradient id="favBg" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#050811"/>
+    </linearGradient>
+    <linearGradient id="favBorder" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+    <linearGradient id="favBeer" x1="0" y1="0" x2="0" y2="1" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#fde047"/>
+      <stop offset="40%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="1" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Fondo oscuro squircle -->
+  <rect width="48" height="48" rx="12" fill="url(#favBg)"/>
+  <rect x="0.75" y="0.75" width="46.5" height="46.5" rx="11.25" stroke="url(#favBorder)" stroke-width="1.5"/>
+
+  <!-- Ícono Schop Cervecero Pub -->
+  <g filter="url(#glow)">
+    <!-- Manilla -->
+    <path d="M31 20 C36 20, 38 23, 38 28 C38 33, 36 36, 31 36" 
+          stroke="#06b6d4" 
+          stroke-width="3" 
+          stroke-linecap="round" 
+          fill="none"/>
+
+    <!-- Cuerpo del tarro -->
+    <path d="M15 17 L16 38 C16 40, 18 41, 20 41 L28 41 C30 41, 32 40, 32 38 L33 17 Z" 
+          fill="url(#favBeer)" 
+          stroke="#38bdf8" 
+          stroke-width="1.5" 
+          stroke-linejoin="round"/>
+
+    <!-- Brillo y burbujas en el tarro -->
+    <line x1="20" y1="20" x2="20" y2="38" stroke="#ffffff" stroke-width="1.5" stroke-opacity="0.3" stroke-linecap="round"/>
+    <line x1="24" y1="20" x2="24" y2="39" stroke="#ffffff" stroke-width="1.5" stroke-opacity="0.4" stroke-linecap="round"/>
+    <circle cx="27" cy="33" r="1" fill="#ffffff"/>
+    <circle cx="22" cy="27" r="0.8" fill="#ffffff"/>
+
+    <!-- Espuma cremosa sobresaliente -->
+    <path d="M13 17 
+             C12 15, 13 13, 15 13 
+             C16 10, 19 9, 21 11 
+             C23 9, 26 9, 28 11 
+             C30 9, 33 11, 33 13 
+             C35 14, 35 16, 34 17 
+             C33 18, 32 18, 31 17
+             C29 18, 27 18, 25 17
+             C23 18, 21 18, 19 17
+             C17 18, 15 18, 13 17 Z" 
+          fill="#ffffff" 
+          stroke="#e2e8f0" 
+          stroke-width="0.8"/>
+          
+    <!-- Gota desbordando -->
+    <path d="M15 17 C15 20, 17 21, 18 19" fill="#ffffff"/>
+  </g>
+
+  <!-- Destello ámbar pub -->
+  <circle cx="36" cy="11" r="1.5" fill="#f59e0b"/>
+</svg>

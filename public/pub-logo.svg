@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Degradado del Fondo Squircle -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="50%" stop-color="#090d16"/>
+      <stop offset="100%" stop-color="#04060a"/>
+    </linearGradient>
+
+    <!-- Borde Neón Pub: Cian a Ámbar Dorado -->
+    <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="50%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+
+    <!-- Cuerpo de la Cerveza: Dorado Intenso Artesanal -->
+    <linearGradient id="beerGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fde047"/>
+      <stop offset="30%" stop-color="#f59e0b"/>
+      <stop offset="85%" stop-color="#d97706"/>
+      <stop offset="100%" stop-color="#b45309"/>
+    </linearGradient>
+
+    <!-- Espuma Cremosa Artesanal -->
+    <linearGradient id="foamGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="70%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#e2e8f0"/>
+    </linearGradient>
+
+    <!-- Brillo del Vidrio -->
+    <linearGradient id="glassShine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.45"/>
+      <stop offset="40%" stop-color="#ffffff" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Manilla del Tarro -->
+    <linearGradient id="handleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="#0284c7" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.7"/>
+    </linearGradient>
+
+    <!-- Halo de Resplandor Neón -->
+    <filter id="neonGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <radialGradient id="ambientGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.25"/>
+      <stop offset="60%" stop-color="#06b6d4" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Fondo squircle premium con halo -->
+  <rect x="16" y="16" width="480" height="480" rx="112" fill="url(#bgGrad)"/>
+  
+  <!-- Halo ambiental interno -->
+  <circle cx="256" cy="270" r="180" fill="url(#ambientGlow)"/>
+
+  <!-- Borde exterior neón -->
+  <rect x="16" y="16" width="480" height="480" rx="112" fill="none" stroke="url(#borderGrad)" stroke-width="7" stroke-opacity="0.85"/>
+
+  <!-- ÍCONO PRINCIPAL: TARRO CERVECERO PUB CON ESPUMA DESBORDANTE -->
+  <g transform="translate(16, 8)" filter="url(#neonGlow)">
+    
+    <!-- Manilla del Schop / Tarro -->
+    <path d="M 326 210 C 390 210, 404 250, 404 310 C 404 370, 390 410, 326 410" 
+          fill="none" 
+          stroke="url(#handleGrad)" 
+          stroke-width="36" 
+          stroke-linecap="round"/>
+
+    <!-- Reflejo interior manilla -->
+    <path d="M 326 226 C 374 226, 386 254, 386 310 C 386 366, 374 394, 326 394" 
+          fill="none" 
+          stroke="#ffffff" 
+          stroke-width="6" 
+          stroke-opacity="0.5" 
+          stroke-linecap="round"/>
+
+    <!-- Cuerpo del Tarro (Base de Vidrio) -->
+    <path d="M 140 180 L 152 414 C 154 440, 172 458, 198 458 L 314 458 C 340 458, 358 440, 360 414 L 372 180 Z" 
+          fill="#0c192c" 
+          stroke="#38bdf8" 
+          stroke-width="10" 
+          stroke-linejoin="round"/>
+
+    <!-- Cerveza Líquida Ámbar / Dorada -->
+    <path d="M 149 200 L 158 410 C 160 430, 174 446, 198 446 L 314 446 C 338 446, 352 430, 354 410 L 363 200 Z" 
+          fill="url(#beerGrad)"/>
+
+    <!-- Ranuras / Facetas verticales del tarro cervecero -->
+    <path d="M 194 210 L 200 436" stroke="#ffffff" stroke-width="12" stroke-opacity="0.18" stroke-linecap="round"/>
+    <path d="M 256 210 L 256 440" stroke="#ffffff" stroke-width="16" stroke-opacity="0.22" stroke-linecap="round"/>
+    <path d="M 318 210 L 312 436" stroke="#000000" stroke-width="12" stroke-opacity="0.25" stroke-linecap="round"/>
+
+    <!-- Burbujas de Cerveza Artesanal -->
+    <circle cx="210" cy="380" r="7" fill="#ffffff" fill-opacity="0.7"/>
+    <circle cx="228" cy="330" r="5" fill="#ffffff" fill-opacity="0.6"/>
+    <circle cx="248" cy="400" r="6" fill="#ffffff" fill-opacity="0.8"/>
+    <circle cx="280" cy="360" r="8" fill="#ffffff" fill-opacity="0.7"/>
+    <circle cx="295" cy="300" r="5" fill="#ffffff" fill-opacity="0.5"/>
+    <circle cx="235" cy="250" r="6" fill="#ffffff" fill-opacity="0.65"/>
+    <circle cx="270" cy="235" r="7" fill="#ffffff" fill-opacity="0.75"/>
+
+    <!-- Brillo Lateral del Vidrio (Highlight) -->
+    <path d="M 166 210 L 172 418 C 173 426, 178 434, 186 438" 
+          fill="none" 
+          stroke="#ffffff" 
+          stroke-width="8" 
+          stroke-linecap="round" 
+          stroke-opacity="0.55"/>
+
+    <!-- Espuma Cremosa Superior (Head Foam) -->
+    <!-- Gotas que caen / desbordan la copa -->
+    <path d="M 136 186 C 136 218, 154 228, 162 216 C 170 206, 174 186, 174 186" fill="url(#foamGrad)"/>
+    <path d="M 286 184 C 286 230, 310 244, 320 226 C 328 210, 332 184, 332 184" fill="url(#foamGrad)"/>
+
+    <!-- Masa principal de espuma voluptuosa -->
+    <path d="M 130 178 
+             C 114 178, 106 156, 118 140 
+             C 110 120, 130 96, 154 104 
+             C 170 82, 206 78, 224 98 
+             C 244 76, 284 76, 304 98 
+             C 324 84, 356 94, 366 118 
+             C 388 126, 398 152, 386 174 
+             C 394 192, 376 210, 356 204
+             C 342 210, 326 204, 320 196
+             C 300 206, 276 202, 268 194
+             C 252 204, 228 202, 218 194
+             C 202 206, 176 204, 164 194
+             C 152 202, 136 196, 130 178 Z" 
+          fill="url(#foamGrad)" 
+          stroke="#e2e8f0" 
+          stroke-width="4"/>
+
+    <!-- Sombras sutiles y volumen de la espuma -->
+    <ellipse cx="180" cy="130" rx="26" ry="16" fill="#ffffff" fill-opacity="0.8"/>
+    <ellipse cx="256" cy="116" rx="34" ry="20" fill="#ffffff" fill-opacity="0.9"/>
+    <ellipse cx="332" cy="134" rx="24" ry="16" fill="#ffffff" fill-opacity="0.8"/>
+    <path d="M 148 160 C 180 172, 220 172, 256 160 C 290 172, 330 172, 360 160" 
+          fill="none" 
+          stroke="#cbd5e1" 
+          stroke-width="3" 
+          stroke-linecap="round" 
+          stroke-opacity="0.6"/>
+
+    <!-- Chispas / Brillos Neón Pub en las esquinas -->
+    <polygon points="106,78 112,60 118,78 136,84 118,90 112,108 106,90 88,84" fill="#00d2ff"/>
+    <polygon points="392,64 397,48 402,64 418,69 402,74 397,90 392,74 376,69" fill="#f59e0b"/>
+  </g>
+
+  <!-- Píldora inferior "PUB" con tipografía neón audaz -->
+  <g transform="translate(156, 436)">
+    <rect x="0" y="0" width="200" height="42" rx="21" fill="#090d16" stroke="url(#borderGrad)" stroke-width="2.5"/>
+    <text x="100" y="27" 
+          font-family="'Outfit', 'Inter', system-ui, sans-serif" 
+          font-size="20" 
+          font-weight="900" 
+          letter-spacing="5" 
+          fill="#f59e0b" 
+          text-anchor="middle">
+      NEXUS PUB
+    </text>
+  </g>
+</svg>
