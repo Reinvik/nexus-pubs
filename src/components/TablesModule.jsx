@@ -3,6 +3,8 @@ import { createPortal } from 'react-dom';
 import { usePuntoNexus } from '../context/PuntoNexusContext';
 import DualCurrencyDisplay from './DualCurrencyDisplay';
 import KitchenView from './KitchenView';
+import TableQRModal from './TableQRModal';
+import QRPrintStudio from './QRPrintStudio';
 import { 
   Utensils, 
   Plus, 
@@ -30,7 +32,8 @@ import {
   ShieldCheck,
   Smartphone,
   RotateCcw,
-  ExternalLink
+  ExternalLink,
+  Printer
 } from 'lucide-react';
 
 const getProductImage = (prod) => {
@@ -90,6 +93,9 @@ export default function TablesModule({ setActiveTab, setPosCart, onOpenGuestSimu
   const [isTempModalOpen, setIsTempModalOpen] = useState(false);
   const [tempNameInput, setTempNameInput] = useState('');
   const [isKitchenOpen, setIsKitchenOpen] = useState(false);
+  const [selectedQrTable, setSelectedQrTable] = useState(null);
+  const [isPrintStudioOpen, setIsPrintStudioOpen] = useState(false);
+  const [printStudioTableId, setPrintStudioTableId] = useState(null);
   
   // Estado para pedido para llevar
   const [isTakeoutModalOpen, setIsTakeoutModalOpen] = useState(false);
@@ -623,6 +629,32 @@ export default function TablesModule({ setActiveTab, setPosCart, onOpenGuestSimu
             + Tarjeta QR Personal
           </button>
 
+          <button 
+            type="button"
+            onClick={() => {
+              setPrintStudioTableId(null);
+              setIsPrintStudioOpen(true);
+            }}
+            className="btn-secondary"
+            style={{
+              padding: '8px 14px',
+              borderRadius: '10px',
+              fontWeight: '800',
+              fontSize: '12px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              background: 'rgba(2, 132, 199, 0.08)',
+              border: '1px solid rgba(2, 132, 199, 0.35)',
+              color: '#0284c7',
+              cursor: 'pointer'
+            }}
+            title="Abrir Centro de Impresión para generar acrílicos de mesa, tarjetas PVC y posavasos"
+          >
+            <Printer size={14} />
+            🖨️ Imprimir Tarjetas QR
+          </button>
+
           {/* ── BOTÓN KDS BARRA & COCINA ── */}
           {(() => {
             const allItems = tables.flatMap(t => t.items || []);
@@ -821,8 +853,35 @@ export default function TablesModule({ setActiveTab, setPosCart, onOpenGuestSimu
                   </div>
                 </div>
 
-                {/* Botón Rápido para Simular o Abrir la Tarjeta QR del Cliente en otra pestaña */}
-                <div style={{ padding: '0 14px 10px', display: 'flex', gap: '6px' }}>
+                {/* Botón Rápido para Ver QR en grande o Simular Celular Cliente */}
+                <div style={{ padding: '0 14px 10px', display: 'flex', gap: '5px' }}>
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedQrTable(table);
+                    }}
+                    style={{
+                      padding: '6px 8px',
+                      borderRadius: '8px',
+                      fontSize: '10.5px',
+                      fontWeight: 800,
+                      background: '#ffffff',
+                      border: '1px solid #cbd5e1',
+                      color: '#0f172a',
+                      cursor: 'pointer',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '4px',
+                      boxShadow: '0 1px 2px rgba(0,0,0,0.04)'
+                    }}
+                    title="Ver código QR en alta resolución, copiar enlace o descargar imagen"
+                  >
+                    <QrCode size={12} color="#0284c7" />
+                    <span>Ver QR</span>
+                  </button>
+
                   <button
                     type="button"
                     onClick={(e) => {
@@ -835,7 +894,7 @@ export default function TablesModule({ setActiveTab, setPosCart, onOpenGuestSimu
                     }}
                     style={{
                       flex: 1,
-                      padding: '6px 8px',
+                      padding: '6px 7px',
                       borderRadius: '8px',
                       fontSize: '10.5px',
                       fontWeight: 800,
@@ -846,10 +905,12 @@ export default function TablesModule({ setActiveTab, setPosCart, onOpenGuestSimu
                       display: 'inline-flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      gap: '5px'
+                      gap: '4px'
                     }}
+                    title="Simular comanda de cliente en celular"
                   >
-                    <Smartphone size={12} /> Celular Cliente QR
+                    <Smartphone size={12} />
+                    <span>Celular Cliente</span>
                   </button>
                   <a
                     href={`/?qr=${encodeURIComponent(table.qr_code || table.id)}`}
@@ -1742,6 +1803,29 @@ export default function TablesModule({ setActiveTab, setPosCart, onOpenGuestSimu
         </div>,
         document.body
       )}
+
+      {/* ── MODAL: VER QR EN GRANDE ── */}
+      <TableQRModal
+        isOpen={Boolean(selectedQrTable)}
+        onClose={() => setSelectedQrTable(null)}
+        table={selectedQrTable}
+        onOpenPrintStudio={(tableId) => {
+          setPrintStudioTableId(tableId);
+          setIsPrintStudioOpen(true);
+        }}
+        onOpenGuestSimulator={onOpenGuestSimulator}
+      />
+
+      {/* ── MODAL: CENTRO DE IMPRESIÓN DE TARJETAS QR ── */}
+      <QRPrintStudio
+        isOpen={isPrintStudioOpen}
+        onClose={() => {
+          setIsPrintStudioOpen(false);
+          setPrintStudioTableId(null);
+        }}
+        tables={tables}
+        initialSelectedTableId={printStudioTableId}
+      />
 
     </div>
   );
